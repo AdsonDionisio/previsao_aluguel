@@ -29,7 +29,7 @@ createApp({
         async prever() {
             try{
                 const response = await axios.post(
-                    'http://localhost/prever_alugel/',
+                    '/prever_alugel/',
                      this.dados
                     );            
                 this.resultado = response.data;
