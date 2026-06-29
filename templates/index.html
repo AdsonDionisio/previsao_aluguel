@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Previsão de Aluguel</title>
+        <!-- Arquivos externos -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        
+        <div id="app" class="container">
+
+            <h1>Previsão de Aluguel</h1>
+
+            <div class="campo">
+                <label>Bairro</label>
+                <input v-model="dados.bairro">
+            </div>
+
+            <div class="campo">
+                <label>Tipo do imóvel</label>
+
+                <select v-model="dados.tipo_imovel">
+                    <option>Apartamento</option>
+                    <option>Casa</option>
+                    <option>Cobertura</option>
+                    <option>Studio</option>
+                </select>
+            </div>
+
+            <div class="grid">
+
+                <div class="campo">
+                    <label>Área útil</label>
+                    <input type="number" v-model.number="dados.area_util">
+                </div>
+
+                <div class="campo">
+                    <label>Banheiros</label>
+                    <input type="number" v-model.number="dados.banheiros">
+                </div>
+
+                <div class="campo">
+                    <label>Suítes</label>
+                    <input type="number" v-model.number="dados.suites">
+                </div>
+
+                <div class="campo">
+                    <label>Quartos</label>
+                    <input type="number" v-model.number="dados.quartos">
+                </div>
+
+                <div class="campo">
+                    <label>Vagas</label>
+                    <input type="number" v-model.number="dados.vagas_garagem">
+                </div>
+
+                <div class="campo">
+                    <label>Condomínio</label>
+                    <input type="number" v-model.number="dados.taxa_condominio">
+                </div>
+
+                <div class="campo">
+                    <label>IPTU Anual</label>
+                    <input type="number" v-model.number="dados.iptu_ano">
+                </div>
+
+            </div>
+
+            <button @click="prever">
+                Calcular
+            </button>
+
+            <div class="resultado" v-if="resultado">
+
+                <h2>Valor previsto</h2>
+
+                <h1>
+                    R$
+                    {{ Number(resultado.rental_value).toLocaleString('pt-BR',{
+                        minimumFractionDigits:2,
+                        maximumFractionDigits:2
+                    }) }}
+                </h1>
+
+            </div>
+
+        </div>
+
+        <script src="/static/app.js"></script>
+
+        </body>
+</html>
